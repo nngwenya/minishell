@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:38:22 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/04 12:00:49 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/11 15:29:16 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    *ft_realloc(void *ptr, int size, int new_size)
 
     new = ft_memalloc(new_size);
     new = ft_memcpy(new, ptr, size);
-    //free(ptr);
+    free(ptr);
     return (new);
 }
 
