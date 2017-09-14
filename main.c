@@ -6,7 +6,7 @@
 /*  By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/21 13:54:31y nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/12 16:55:17 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/14 15:20:30 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ void	displays_env(char **s)
 		printf("%s\n", s[i]);
 }
 
-int		main()
+int		main(int argc, char **argv, char **env)
 {
 	char *name;
 	char **args;
 	extern char **environ;
+
 	printf("%s" , environ[0]);
 	t_env main_env;
 	main_env.env = env_dup(environ);
@@ -38,8 +39,7 @@ int		main()
 	{
 		ft_putstr("$> ");
 		get_input(&input);
-		prompt_en(main_env.env, input);
-		execve_func(name, args);
+		prompt_en(input, main_env.env);
 	}
 	return (0);
 }

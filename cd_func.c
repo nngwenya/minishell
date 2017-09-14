@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:06:51 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/12 16:15:15 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/14 12:34:19 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		cd_execut(char *dir, int old_pwd_bool, char **envir)
     char	buff[BUFF_SIZE];
     char	*oldpwd;
     
-    oldpwd = getenv_echo("$OLDPWD", envir);
+    oldpwd = ft_getenv("$OLDPWD", envir);
    
     curr_dir = getcwd(buff, BUFF_SIZE);
     set_env(envir, "OLDPWD", curr_dir);
@@ -46,7 +46,7 @@ int			cd_builtin(char *dir, char **envir)
 {
     char *home;
     
-    home = getenv_echo("$HOME", envir);
+    home = ft_getenv("$HOME", envir);
     /*if (dir[1] && dir[2])
         ft_putendl("cd : too many arguments");*/
     if (!dir[1] || !ft_strcmp(&dir[1], "--"))
@@ -56,7 +56,7 @@ int			cd_builtin(char *dir, char **envir)
     }
     else if (dir[1] == '-')
     {
-        home = getenv_echo("$OLDPWD", envir);
+        home = ft_getenv("$OLDPWD", envir);
         cd_execut(home, 1, envir);
         return (1);
     }

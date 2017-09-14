@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execve_func.c                                      :+:      :+:    :+:   */
+/*   unset_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/12 16:15:58 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/14 15:21:31 by nngwenya         ###   ########.fr       */
+/*   Created: 2017/09/14 15:37:00 by nngwenya          #+#    #+#             */
+/*   Updated: 2017/09/14 16:58:33 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "minishell.h"
-#include <unistd.h>
-//copies the process id of a program
-void	execve_func(char **path, char **env)
+
+int		unset_env(const char *name)
 {
-	pid_t store;
-	pid_t child;
-	char *prog;
-	prog = add_path(path[0], env);
-	if (prog)
+	char **value_en; 
+	char **ret;
+	size_t len;
+	t_env main_env.v;
+
+	len = ft_strlen(name);
+	while (value_en = main_env.v && *value_en != NULL;) 
 	{
-		child = fork();
-		if (child == 0)
+		if (ft_strncmp(*value_en, name, len) == 0 && (*value_en)[len] == '=')
 		{
-			execve(prog, path, env);
-			ft_putendl("FAILED TO RUN EXECVE");
-			exit(-1);
-		}
-		else if (child > 0)
-			wait(&store);
+			while (ret = value_en && *ret != NULL) 
+			{
+				*ret = *(ret + 1);
+				ret++;
+			}
 		else
-			ft_putendl("FAILED TO FORK");
+		 	{		
+				value_en++;
+			}
+		}	
 	}
-	else
-	{
-		ft_putstr("command not found: ");
-		ft_putendl(path[0]);
-	}
+
+	return 0;
 }
