@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:22:24 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/14 16:58:40 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/19 13:42:23 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,29 @@
 #include <stdlib.h>
 #include "minishell.h"
 //searching if the key exist and printing the value
-int    prompt_en(char *input, char **env)
+
+int    prompt_en(char *input, char ***env)
 {
     char **data;
-	t_env main_env;
 	char *dir;
-
-	main_env.env = env;
-    data = ft_strsplit(input, ' ');
+    
+	data = ft_strsplit(input, ' ');
 	if (ft_strcmp(data[0], "env") == 0)
-        displays_env(env);
+        displays_env(*env);
+	else if (ft_strcmp(data[0], "setenv") == 0)
+		*env = ft_setenv(*env, data[1], data[3]);
+	else if (ft_strcmp(data[0], "unsetenv") == 0)
+	*env =	unset_env(*env, data[1]);
     else if(ft_strcmp(data[0], "exit") == 0)
 		exit(-1);
 	else if ((ft_strcmp(data[0], "echo") == 0) && (data[1][0] == '$'))
-		ft_putendl(ft_getenv(data[1] ,env));
+		ft_putendl(ft_getenv(data[1] + 1 ,*env));
 	else if ((ft_strcmp(data[0], "echo") == 0) && (data[1][0] != '$'))
 		ft_echo(&data[1]);
 	else if(ft_strcmp(data[0], "cd") == 0)
-		cd_builtin(data[1] ,main_env.env);
+		cd_builtin(data[1] , *env);
 	else
-		execve_func(data, main_env.env);
+		execve_func(data, *env);
 	return (1);
 }
 void	ft_putchar(char c)
@@ -65,7 +68,8 @@ void	ft_echo(char **arguments)
 		putstring(arguments[i++]);
 	ft_putchar('\n');
 }
-
+//function obtains the current value of the environment variable,
+//name.
 char	*ft_getenv(char *env_str, char **env)
 {
 	int i;

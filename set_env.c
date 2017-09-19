@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:38:22 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/13 15:05:33 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:40:25 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "minishell.h"
 #include "libft/libft.h"
 
+//function tries to change the size of the allocation pointed
+//to by ptr to size, and returns ptr.
 void    *ft_realloc(void *ptr, int size, int new_size)
 {
     void *new;
@@ -42,11 +44,14 @@ void    get_input(char **input)
     }
     *(*input + i) = '\0';
 }
-char    **set_env(char **info, char *key, char *value)
+//set, unset and fetch environment variables from the host
+//environment list.
+char    **ft_setenv(char **info, char *key, char *value)
 {
     char *value_env;
     char **ret;
     int i;
+	char *dest;
 
     value_env = ft_strjoin(key, "=");
     value_env = ft_strjoin(value_env, value);
@@ -60,6 +65,16 @@ char    **set_env(char **info, char *key, char *value)
         ret[i] = ft_strdup(info[i]);
         i++;
     }
+	if (key && key != '\0')
+	{
+		*dest = *key;
+		dest++;
+		key++;
+	}
+	else
+	{
+		return ;
+	}
     ret[i] = ft_strdup(value_env);
     i++;
     ret[i] = NULL;

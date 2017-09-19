@@ -6,36 +6,37 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 15:37:00 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/14 16:58:33 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/19 13:26:30 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "minishell.h"
 
-int		unset_env(const char *name)
+//function deletes all instances of the variable name pointed
+//to by name from the list
+char	**unset_env(char **name, char *key)
 {
-	char **value_en; 
 	char **ret;
-	size_t len;
-	t_env main_env.v;
+	int i;
 
-	len = ft_strlen(name);
-	while (value_en = main_env.v && *value_en != NULL;) 
+	i = 0;
+	while (name[i])
+		i++;
+	ret = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (name[i])
 	{
-		if (ft_strncmp(*value_en, name, len) == 0 && (*value_en)[len] == '=')
-		{
-			while (ret = value_en && *ret != NULL) 
-			{
-				*ret = *(ret + 1);
-				ret++;
-			}
+		if (ft_strncmp(key,name[i], ft_strlen(key)) == 0
+				&& (name[i][ft_strlen(key)] == '='))
+			i++;
 		else
-		 	{		
-				value_en++;
-			}
-		}	
+		{
+			ret[i] = ft_strdup(name[i]);
+			i++;
+		}
+		
 	}
-
-	return 0;
+	ret[i] = NULL;
+	return (ret);
 }
