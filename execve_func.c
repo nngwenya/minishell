@@ -6,19 +6,21 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:15:58 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/19 17:37:04 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/20 16:48:17 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "minishell.h"
-#include <unistd.h>
+
 //copies the process id of a program
+
 void	execve_func(char **path, char **env)
 {
-	pid_t store;
-	pid_t child;
-	char *prog;
+	pid_t	store;
+	pid_t	child;
+	char	*prog;
+
 	prog = add_path(path[0], env);
 	if (prog)
 	{
@@ -36,7 +38,7 @@ void	execve_func(char **path, char **env)
 	}
 	else
 	{
-		ft_putstr("Seriously Now ?: ");
+		ft_putstr("command not found: ");
 		ft_putendl(path[0]);
 	}
 }

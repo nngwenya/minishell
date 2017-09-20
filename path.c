@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 16:51:07 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/19 13:02:27 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/20 16:47:33 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 char	*add_path(char *prog, char **environ)
 {
-	char *res;
-	char **path;
-	int i;
-	char *temp;
+	char	*res;
+	char	**path;
+	int		i;
+	char	*temp;
 
 	temp = ft_getenv("PATH", environ);
 	path = ft_strsplit(temp, ':');
