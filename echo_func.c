@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:22:24 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 15:47:24 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 09:55:35 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "minishell.h"
 
 //searching if the key exist and printing the value
@@ -18,7 +17,6 @@
 int		prompt_en(char *input, char ***env)
 {
 	char	**data;
-	char	*dir;
 
 	data = ft_strsplit(input, ' ');
 	if (ft_strcmp(data[0], "env") == 0)

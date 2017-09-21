@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 16:51:07 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 16:47:33 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 16:25:14 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "minishell.h"
 
 char	*add_path(char *prog, char **environ)
@@ -22,7 +21,6 @@ char	*add_path(char *prog, char **environ)
 
 	temp = ft_getenv("PATH", environ);
 	path = ft_strsplit(temp, ':');
-	//free(temp);
 	i = 0;
 	while (path[i])
 	{
@@ -34,5 +32,5 @@ char	*add_path(char *prog, char **environ)
 		i++;
 		free(res);
 	}
-	return (NULL);
+	return (prog);
 }

@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:38:22 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 16:46:44 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 16:47:58 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "libft/libft.h"
 
 //function tries to change the size of the allocation pointed

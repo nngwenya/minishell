@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:15:58 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 16:48:17 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 10:25:22 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "minishell.h"
 
 //copies the process id of a program
@@ -22,7 +21,7 @@ void	execve_func(char **path, char **env)
 	char	*prog;
 
 	prog = add_path(path[0], env);
-	if (prog)
+	if (access(prog, X_OK) == 0)
 	{
 		child = fork();
 		if (child == 0)

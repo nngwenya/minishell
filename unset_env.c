@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 15:37:00 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 14:55:07 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 09:57:16 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "minishell.h"
 
 //function deletes all instances of the variable name pointed

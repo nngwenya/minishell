@@ -6,11 +6,10 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 11:26:11 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/20 15:14:43 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/21 09:55:53 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "minishell.h"
 
 void	execute(t_env main_env, char *input)
