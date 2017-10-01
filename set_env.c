@@ -6,14 +6,11 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 14:38:22 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/21 16:47:58 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/26 15:56:18 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-
-//function tries to change the size of the allocation pointed
-//to by ptr to size, and returns ptr.
 
 void	*ft_realloc(void *ptr, int size, int new_size)
 {
@@ -42,21 +39,39 @@ void	get_input(char **input)
 		count++;
 	}
 	*(*input + i) = '\0';
+	if (!ret)
+	{
+		free(*input);
+		return ;
+	}
 }
 
-//set, unset and fetch environment variables from the host
-//environment list.
+int		ft_find_key(char **info, char *key)
+{
+	int		i;
+	int		dest;
+
+	dest = 0;
+	i = 0;
+	while (info[dest])
+	{
+		if (ft_strncmp(key, info[dest], ft_strlen(key)) == 0
+				&& (info[dest][ft_strlen(key)] == '='))
+			break ;
+		dest++;
+	}
+	return (dest);
+}
 
 char	**ft_setenv(char **info, char *key, char *value)
 {
 	char	*value_env;
 	char	**ret;
 	int		i;
-	char	dest;
+	int		dest;
 
-	dest = 0;
-	value_env = ft_strjoin(key, "=");
-	value_env = ft_strjoin(value_env, value);
+	dest = ft_find_key(info, key);
+	value_env = ft_strjoin(ft_strjoin(key, "="), value);
 	i = 0;
 	while (info[i])
 		i++;

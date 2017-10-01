@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 11:26:11 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/21 09:55:53 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/26 15:56:42 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	execute(t_env main_env, char *input)
 	if (ft_strcmp(input, "env") == 0)
 		displays_env(main_env.env);
 }
-
-//duplicating the env variables to avoid memory leaks
 
 char	**env_dup(char **environ)
 {

@@ -6,7 +6,7 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 13:06:51 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/21 09:56:12 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:46:27 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cd_execut(char *dir, int old_pwd_bool, char **envir)
 	char	buff[BUFF_SIZE];
 	char	*oldpwd;
 
-	oldpwd = ft_getenv("$OLDPWD", envir);
+	oldpwd = ft_getenv("OLDPWD", envir);
 	curr_dir = getcwd(buff, BUFF_SIZE);
 	ft_setenv(envir, "OLDPWD", curr_dir);
 	if (!chdir(dir))
@@ -42,23 +42,24 @@ void	cd_execut(char *dir, int old_pwd_bool, char **envir)
 
 int		cd_builtin(char *dir, char **envir)
 {
-	char *home;
+	char	*home;
 
-	home = ft_getenv("$HOME", envir);
-	if (dir[1] && dir[2])
-		ft_putendl("cd : too many arguments");
-	else if (!dir[1] || !ft_strcmp(&dir[1], "--"))
+	if (!dir)
 	{
+		home = ft_getenv("HOME", envir);
 		cd_execut(home, 0, envir);
-		return (1);
 	}
-	else if (dir[1] == '-')
+	else if (dir[0] == '-')
 	{
-		home = ft_getenv("$OLDPWD", envir);
-		cd_execut(home, 1, envir);
-		return (1);
+		home = ft_strjoin(ft_getenv("PWD", envir), &dir[1]);
+		cd_execut(home, 0, envir);
+	}
+	else if (dir[0] == '~')
+	{
+		home = ft_strjoin(ft_getenv("HOME", envir), &dir[1]);
+		cd_execut(home, 0, envir);
 	}
 	else
-		cd_execut(dir, 0, envir);
+		cd_execut(&dir[0], 0, envir);
 	return (1);
 }

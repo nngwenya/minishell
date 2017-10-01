@@ -6,13 +6,11 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/12 16:15:58 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/21 10:25:22 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/26 15:56:28 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//copies the process id of a program
 
 void	execve_func(char **path, char **env)
 {

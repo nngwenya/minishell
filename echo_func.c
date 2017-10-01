@@ -6,18 +6,18 @@
 /*   By: nngwenya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 11:22:24 by nngwenya          #+#    #+#             */
-/*   Updated: 2017/09/21 09:55:35 by nngwenya         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:59:35 by nngwenya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <signal.h>
 
-//searching if the key exist and printing the value
-
-int		prompt_en(char *input, char ***env)
+int		command_env(char *input, char ***env)
 {
 	char	**data;
 
+	signal(2, sig_c_handler);
 	data = ft_strsplit(input, ' ');
 	if (ft_strcmp(data[0], "env") == 0)
 		displays_env(*env);
@@ -35,6 +35,7 @@ int		prompt_en(char *input, char ***env)
 		cd_builtin(data[1], *env);
 	else
 		execve_func(data, *env);
+	free_2d_array(data);
 	return (1);
 }
 
@@ -42,8 +43,6 @@ void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
-
-//checking for characters which echo doesn't display
 
 void	putstring(char *s)
 {
@@ -59,8 +58,6 @@ void	putstring(char *s)
 	ft_putchar(' ');
 }
 
-//printing out the arguments after the echo
-
 void	ft_echo(char **arguments)
 {
 	int i;
@@ -70,9 +67,6 @@ void	ft_echo(char **arguments)
 		putstring(arguments[i++]);
 	ft_putchar('\n');
 }
-
-//function obtains the current value of the environment variable,
-//name.
 
 char	*ft_getenv(char *env_str, char **env)
 {
